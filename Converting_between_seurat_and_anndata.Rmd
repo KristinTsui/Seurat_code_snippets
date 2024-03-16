@@ -1,0 +1,39 @@
+---
+title: "Converting between seurat and anndata"
+output: html_notebook
+---
+ 
+install and import the sceasy library
+```{r}
+# install sceasy, reticulate and Seurat
+
+devtools::install_github("cellgeni/sceasy", dependencies = FALSE)
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+BiocManager::install(c("LoomExperiment", "SingleCellExperiment"))
+
+install.packages("reticulate")
+```
+
+```{r}
+library(sp)
+library(Seurat)
+library(sceasy)
+library(reticulate)
+```
+
+Load the dataset
+```{r}
+
+# Load the datasets
+Tcell_singleR <- readRDS("CCT5001-CCT5019-T_cells-singleR-500.rds")
+
+```
+
+Convert using sceasy
+```{r}
+sceasy::convertFormat(Tcell_singleR, from="seurat", to="anndata",
+                      outFile='Test2-T_cells-singleR-500.h5ad')
+```
+
