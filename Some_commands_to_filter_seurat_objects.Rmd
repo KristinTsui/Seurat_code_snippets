@@ -12,7 +12,7 @@ Tcell_singleR <- subset(Tcell_singleR, timepoint == "A_Pre")
 
 # 2. keep only the assay of interest in the seurat object
 DefaultAssay(Tcell_singleR) <- "RNA"
-Tcell_singleR <- DietSeurat(Tcell_singleR, layers = "RNA", scale.data = TRUE)
+Tcell_singleR <- DietSeurat(Tcell_singleR, assays = "RNA")
 
 # extracting only the needed metadata - nCountRNA, nCountFeature, construct, patient ID, cell subset, response at m6
 Tcell_singleR@meta.data <- Tcell_singleR@meta.data[, c(2,3,4,6,45,59)]
